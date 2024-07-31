@@ -1,4 +1,5 @@
 package page;
+
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -11,6 +12,7 @@ public class VerificationPage {
     public VerificationPage() {
         codeFiled.shouldBe(visible);
     }
+
     public DashboardPage validVerify(String verificationCode) {
         codeFiled.setValue(verificationCode);
         verifyButton.click();

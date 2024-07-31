@@ -1,4 +1,5 @@
 package page;
+
 import com.codeborne.selenide.SelenideElement;
 import data.DataHelper;
 
@@ -24,6 +25,7 @@ public class TransferPage {
         makeTransfer(amountToTransfer, cardInfo);
         return new DashboardPage();
     }
+
     public void makeTransfer(String amountToTransfer, DataHelper.CardInfo cardInfo) {
         amountInput.setValue(amountToTransfer);
         fromInput.setValue(cardInfo.getCardNumber());

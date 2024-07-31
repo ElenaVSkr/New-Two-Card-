@@ -21,7 +21,7 @@ public class MoneyTransferTest {
     @BeforeEach
     void setup() {
         var loginPage = Selenide.open("http://localhost:9999", LoginPage.class);
-        var  authInfo = DataHelper.getAuthInfo();
+        var authInfo = DataHelper.getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCode();
         dashboardPage = verificationPage.validVerify(verificationCode);
@@ -33,16 +33,16 @@ public class MoneyTransferTest {
 
     @Test
     void shouldTransferFroFirstToSecond() {
-         var amount = generateValidAmount(firstCardBalance);
-         var expectedBalanceFirstCard = firstCardBalance - amount;
-         var expectedBalanceSecondCard = secondCardBalance + amount;
-         var transferPage = dashboardPage.selectCardToTransfer(secondCardInfo);
-         dashboardPage = transferPage.makeValidTransfer(String.valueOf(amount), firstCardInfo);
-         dashboardPage.reloadDashboardPage();
-         var actualBalanceFirstCard = dashboardPage.getCardBalance(getMaskedNumber(firstCardInfo.getCardNumber()));
-         var actualBalanceSecondCard = dashboardPage.getCardBalance(1);
-         assertAll(() -> assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard),
-                 () -> assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard));
+        var amount = generateValidAmount(firstCardBalance);
+        var expectedBalanceFirstCard = firstCardBalance - amount;
+        var expectedBalanceSecondCard = secondCardBalance + amount;
+        var transferPage = dashboardPage.selectCardToTransfer(secondCardInfo);
+        dashboardPage = transferPage.makeValidTransfer(String.valueOf(amount), firstCardInfo);
+        dashboardPage.reloadDashboardPage();
+        var actualBalanceFirstCard = dashboardPage.getCardBalance(getMaskedNumber(firstCardInfo.getCardNumber()));
+        var actualBalanceSecondCard = dashboardPage.getCardBalance(1);
+        assertAll(() -> assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard),
+                () -> assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard));
 
     }
 
@@ -56,7 +56,7 @@ public class MoneyTransferTest {
         var actualBalanceFirstCard = dashboardPage.getCardBalance(getMaskedNumber(firstCardInfo.getCardNumber()));
         var actualBalanceSecondCard = dashboardPage.getCardBalance(getMaskedNumber(secondCardInfo.getCardNumber()));
         assertAll(() -> assertEquals(firstCardBalance, actualBalanceFirstCard),
-         () -> assertEquals(secondCardBalance, actualBalanceSecondCard));
+                () -> assertEquals(secondCardBalance, actualBalanceSecondCard));
 
     }
 }

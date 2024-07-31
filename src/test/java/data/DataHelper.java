@@ -1,4 +1,5 @@
 package data;
+
 import lombok.Value;
 
 import java.util.Random;
@@ -13,7 +14,7 @@ public class DataHelper {
     }
 
     public static AuthInfo getAuthInfo() {
-        return new AuthInfo("vasya","qwerty123");
+        return new AuthInfo("vasya", "qwerty123");
     }
 
     public static CardInfo getFirstCardInfo() {
